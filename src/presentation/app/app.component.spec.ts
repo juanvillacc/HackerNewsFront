@@ -70,15 +70,11 @@ describe('AppComponent', () => {
     storiesSearchUseCase.execute.and.returnValue(of(mockResponse));
 
     // Act: Call the search method
-    component.search();
+    component.search(0);
     fixture.detectChanges();
 
-
-
-
     // Assert: Check if the service method was called and the data was updated correctly
-    //expect(storiesSearchUseCase.execute).toHaveBeenCalledOnceWith(params);
-
+    expect(storiesSearchUseCase.execute).toHaveBeenCalledOnceWith(params);
     expect(component.dataSource).toEqual(mockResponse.page);
     expect(component.totalRecords).toBe(2);
   });
