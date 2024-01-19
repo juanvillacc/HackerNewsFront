@@ -1,7 +1,12 @@
 
 
 <main class="main">
-  <div class="content">
+  <form name="searchForm" [formGroup]="searchForm" fxLayout="column" fxFlex>
+    <mat-form-field>
+      <mat-label>Search by title</mat-label>
+      <input matInput  name= "search" formControlName="searchText" (keydown.enter)="search()" [value]="title">
+      <button matSuffix mat-button (click)="search()" ><mat-icon>search</mat-icon></button>
+    </mat-form-field>
     <table mat-table [dataSource]="dataSource">
         <!-- title Column -->
         <ng-container matColumnDef="story-title">
@@ -16,9 +21,9 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [length]="50" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
+    <mat-paginator [length]="totalRecords" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
     </mat-paginator>
-  </div>
+  </form>
 </main>
 
 
